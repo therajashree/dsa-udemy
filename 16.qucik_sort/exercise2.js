@@ -31,7 +31,7 @@
 // and that we are sorting the values from smallest to largest.
 
 
-function pivot(arr, comparator, start = 0, end = arr.length + 1) {
+function pivot(arr, comparator, start = 0, end = arr.length - 1) {
     if (typeof comparator !== 'function') {
         comparator = (a, b) => a - b;
     }
@@ -41,7 +41,7 @@ function pivot(arr, comparator, start = 0, end = arr.length + 1) {
     }
 
     let pivot = arr[start];
-    swapIdx = start;
+    let swapIdx = start;
 
     for (let i = start + 1; i < arr.length; i++) {
         if (comparator(pivot , arr[i]) > 0) {
@@ -55,12 +55,11 @@ function pivot(arr, comparator, start = 0, end = arr.length + 1) {
 
 function quickSort(arr, comparator, left = 0, right = arr.length - 1) {
     if (left < right) {
-        let pivotIndex = pivot(arr, comparator, left, right);
-        quickSort(arr, comparator, left, pivotIndex);
-        quickSort(arr, comparator, pivotIndex + 1, right);
+      let pivotIndex = pivot(arr, comparator, left, right);
+      quickSort(arr, comparator, left, pivotIndex);
+      quickSort(arr, comparator, pivotIndex + 1, right);
     }
-
-    return arr;
+  return arr;
 }
 
 
